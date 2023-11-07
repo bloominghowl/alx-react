@@ -4,10 +4,19 @@ import { css, StyleSheet } from 'aphrodite';
 
 const styles = StyleSheet.create({
   urgent: {
-    color: '#ff0000'
+    color: '#ff0000',
+    borderBottom: 'black'
   },
   default: {
-    color: '#0000ff'
+    color: '#0000ff',
+    // borderBottom: '1px solid black',
+  },
+  styleSmall : {
+    '@media (max-width: 900px)': {
+      borderBottom:'1px solid black',
+      padding: '10px 8px',
+      fontSize: '20px'
+    }
   }
 })
 
@@ -19,10 +28,10 @@ class NotificationItem extends React.PureComponent {
   render(){
 
     if (this.props.value) {
-      return (<li data-notification-type={this.props.type} className={css(this.props.type === 'urgent' ? styles.urgent : styles.default)} onClick={() => {this.props.markAsRead(this.props.id)}} >{this.props.value}</li>);
+      return (<li data-notification-type={this.props.type} className={css(this.props.type === 'urgent' ? styles.urgent : styles.default, styles.styleSmall)} onClick={() => {this.props.markAsRead(this.props.id)}} >{this.props.value}</li>);
     } else {
       return (
-        <li data-notification-type={this.props.type} dangerouslySetInnerHTML={this.props.html} className={css(this.props.type === 'urgent' ? styles.urgent : styles.default)} onClick={() => {this.props.markAsRead(this.props.id)}}></li>
+        <li data-notification-type={this.props.type} dangerouslySetInnerHTML={this.props.html} className={css(this.props.type === 'urgent' ? styles.urgent : styles.default, styles.styleSmall)} onClick={() => {this.props.markAsRead(this.props.id)}}></li>
       );
     }
   }
