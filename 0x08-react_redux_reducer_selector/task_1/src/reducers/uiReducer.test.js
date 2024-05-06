@@ -1,3 +1,4 @@
+import { toJS } from 'immutable';
 import uiReducer, { initialState } from './uiReducer';
 import { DISPLAY_NOTIFICATION_DRAWER } from '../actions/uiActionTypes';
 
